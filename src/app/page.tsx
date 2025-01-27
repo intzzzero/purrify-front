@@ -2,10 +2,14 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { texts } from '@/constants/locales';
+import { useLocale } from '@/hooks/useLocale';
 
 export default function Home() {
 	const [currentSlide, setCurrentSlide] = useState(0);
-	const slides = [1, 2, 3, 4, 5];
+	const slides = [1, 2, 3, 4, 5, 6];
+	const locale = useLocale();
+	const t = texts[locale];
 
 	useEffect(() => {
 		const timer = setInterval(() => {
@@ -34,13 +38,13 @@ export default function Home() {
 							href="/auth/signin"
 							className="px-4 py-2 rounded-full bg-primary text-white hover:bg-primary/90"
 						>
-							로그인
+							{t.auth.login}
 						</Link>
 						<Link
 							href="/auth/signup"
 							className="px-4 py-2 rounded-full border border-primary text-primary hover:bg-primary/5"
 						>
-							회원가입
+							{t.auth.signup}
 						</Link>
 					</div>
 				</div>
@@ -53,21 +57,22 @@ export default function Home() {
 					<div className="flex-1 space-y-6">
 						<div className="space-y-4 text-center">
 							<h1 className="text-4xl font-bold text-gray-900">
-								고양이들의 특별한 소셜 스페이스
+								{t.hero.title}
 							</h1>
 							<p className="text-xl text-gray-600">
-								우리 집 고양이가 주인공이 되는 공간
-								<br />
-								고양이들의, 고양이들에 의한, 고양이들을 위한
-								<br />
-								특별한 소셜 네트워크에 오신 것을 환영합니다
+								{t.hero.description.map((line, index) => (
+									<span key={index}>
+										{line}
+										{index < t.hero.description.length - 1 && <br />}
+									</span>
+								))}
 							</p>
 							<div className="flex justify-center mt-8">
 								<Link
 									href="/auth/signin"
 									className="px-6 py-3 text-white bg-primary rounded-full hover:bg-primary/90 transition-colors"
 								>
-									지금 시작하기
+									{t.hero.cta}
 								</Link>
 							</div>
 						</div>
@@ -111,34 +116,25 @@ export default function Home() {
 				{/* 기능 소개 섹션 */}
 				<section className="max-w-6xl mx-auto py-16">
 					<h3 className="text-3xl font-bold text-center mb-12 text-gray-800">
-						Purrify의 특별한 기능
+						{t.features.title}
 					</h3>
 					<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-						<div className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow">
-							<div className="text-primary text-4xl mb-4">😺</div>
-							<h4 className="text-xl font-bold mb-2 text-gray-800">
-								고양이 프로필
-							</h4>
-							<p className="text-gray-700 leading-relaxed">
-								나만의 고양이 프로필을 만들고 관리하세요.
-							</p>
-						</div>
-						<div className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow">
-							<div className="text-primary text-4xl mb-4">📸</div>
-							<h4 className="text-xl font-bold mb-2 text-gray-800">
-								사진 공유
-							</h4>
-							<p className="text-gray-700 leading-relaxed">
-								특별한 순간을 사진과 함께 공유하세요.
-							</p>
-						</div>
-						<div className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow">
-							<div className="text-primary text-4xl mb-4">💬</div>
-							<h4 className="text-xl font-bold mb-2 text-gray-800">커뮤니티</h4>
-							<p className="text-gray-700 leading-relaxed">
-								다른 집사들과 소통하고 정보를 나누세요.
-							</p>
-						</div>
+						{t.features.items.map((feature, index) => (
+							<div
+								key={index}
+								className="p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow"
+							>
+								<div className="text-primary text-4xl mb-4">
+									{feature.emoji}
+								</div>
+								<h4 className="text-xl font-bold mb-2 text-gray-800">
+									{feature.title}
+								</h4>
+								<p className="text-gray-700 leading-relaxed">
+									{feature.description}
+								</p>
+							</div>
+						))}
 					</div>
 				</section>
 			</main>
