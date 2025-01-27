@@ -10,22 +10,27 @@ export const texts = {
 			cta: '지금 시작하기',
 		},
 		features: {
-			title: 'Purrify의 특별한 기능',
+			title: '퍼리파이와 함께하는 특별한 경험',
 			items: [
 				{
-					emoji: '😺',
-					title: '고양이 프로필',
-					description: '나만의 고양이 프로필을 만들고 관리하세요.',
-				},
-				{
 					emoji: '📸',
-					title: '사진 공유',
-					description: '특별한 순간을 사진과 함께 공유하세요.',
+					title: '간편한 공유',
+					description: '귀여운 고양이의 순간을 손쉽게 공유하세요.',
 				},
 				{
-					emoji: '💬',
-					title: '커뮤니티',
-					description: '다른 집사들과 소통하고 정보를 나누세요.',
+					emoji: '💝',
+					title: '소통하기',
+					description: '다른 집사들과 고양이 이야기를 나눠보세요.',
+				},
+				{
+					emoji: '🎯',
+					title: '맞춤 정보',
+					description: '내 고양이에게 딱 맞는 유용한 정보를 받아보세요.',
+				},
+				{
+					emoji: '🤖',
+					title: 'AI 생각 읽기',
+					description: 'AI가 사진 속 고양이의 귀여운 생각을 읽어드려요.',
 				},
 			],
 		},
@@ -48,19 +53,24 @@ export const texts = {
 			title: 'Special Features of Purrify',
 			items: [
 				{
-					emoji: '😺',
-					title: 'Cat Profile',
-					description: "Create and manage your cat's unique profile.",
-				},
-				{
 					emoji: '📸',
-					title: 'Photo Sharing',
-					description: 'Share special moments with photos.',
+					title: 'Easy Sharing',
+					description: 'Share adorable moments of your cat effortlessly.',
 				},
 				{
-					emoji: '💬',
-					title: 'Community',
-					description: 'Connect and share information with other cat parents.',
+					emoji: '💝',
+					title: 'Connect',
+					description: 'Share cat stories with other cat parents.',
+				},
+				{
+					emoji: '🎯',
+					title: 'Tailored Info',
+					description: 'Get useful information perfectly suited for your cat.',
+				},
+				{
+					emoji: '🤖',
+					title: 'AI Mind Reader',
+					description: 'Let AI read the cute thoughts of your cat in photos.',
 				},
 			],
 		},
