@@ -1,12 +1,14 @@
 'use client';
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Skeleton } from '@/components/ui/Skeleton';
 
 type ViewMode = 'list' | 'grid';
 
 export default function Feed() {
 	const [viewMode, setViewMode] = useState<ViewMode>('list');
+	const [isLoggedIn, setIsLoggedIn] = useState(false); // 실제로는 인증 상태 관리 로직 필요
 	const [posts, setPosts] = useState([
 		// 더미 데이터
 		{
@@ -56,30 +58,55 @@ export default function Feed() {
 
 	return (
 		<div className="min-h-screen bg-gray-50">
+			{!isLoggedIn && (
+				<div className="bg-primary/10 py-3">
+					<div className="max-w-6xl mx-auto px-4 text-center">
+						<p className="text-primary">
+							로그인하면 더 많은 기능을 사용할 수 있어요!{' '}
+							<Link
+								href="/auth/signin"
+								className="font-medium underline hover:text-primary/80"
+							>
+								로그인하기
+							</Link>
+						</p>
+					</div>
+				</div>
+			)}
 			<main className="max-w-6xl mx-auto py-8 px-4">
-				{/* 뷰 모드 토글 */}
-				<div className="flex justify-end mb-6">
-					<div className="bg-white rounded-lg shadow-sm p-1 inline-flex">
-						<button
-							onClick={() => setViewMode('list')}
-							className={`px-4 py-2 rounded-md transition-colors ${
-								viewMode === 'list'
-									? 'bg-primary text-white'
-									: 'text-gray-600 hover:bg-gray-100'
-							}`}
-						>
-							<span className="text-lg">📝</span>
-						</button>
-						<button
-							onClick={() => setViewMode('grid')}
-							className={`px-4 py-2 rounded-md transition-colors ${
-								viewMode === 'grid'
-									? 'bg-primary text-white'
-									: 'text-gray-600 hover:bg-gray-100'
-							}`}
-						>
-							<span className="text-lg">📷</span>
-						</button>
+				<div className="flex justify-between items-center mb-6">
+					<h1 className="text-2xl font-bold text-gray-900">고양이들의 일상</h1>
+					<div className="flex gap-4 items-center">
+						{isLoggedIn && (
+							<Link
+								href="/feed/new"
+								className="px-4 py-2 rounded-full bg-primary text-white hover:bg-primary/90"
+							>
+								글쓰기
+							</Link>
+						)}
+						<div className="bg-white rounded-lg shadow-sm p-1 inline-flex">
+							<button
+								onClick={() => setViewMode('list')}
+								className={`px-4 py-2 rounded-md transition-colors ${
+									viewMode === 'list'
+										? 'bg-primary text-white'
+										: 'text-gray-600 hover:bg-gray-100'
+								}`}
+							>
+								<span className="text-lg">📝</span>
+							</button>
+							<button
+								onClick={() => setViewMode('grid')}
+								className={`px-4 py-2 rounded-md transition-colors ${
+									viewMode === 'grid'
+										? 'bg-primary text-white'
+										: 'text-gray-600 hover:bg-gray-100'
+								}`}
+							>
+								<span className="text-lg">📷</span>
+							</button>
+						</div>
 					</div>
 				</div>
 
@@ -115,10 +142,28 @@ export default function Feed() {
 									</div>
 									<div className="p-4">
 										<div className="flex gap-4 mb-2">
-											<button className="text-gray-700 hover:text-primary">
+											<button
+												className={`text-gray-700 hover:text-primary ${
+													!isLoggedIn && 'cursor-not-allowed opacity-50'
+												}`}
+												onClick={() => {
+													if (!isLoggedIn) {
+														alert('좋아요를 누르려면 로그인이 필요합니다.');
+													}
+												}}
+											>
 												좋아요 {post.likes}
 											</button>
-											<button className="text-gray-700 hover:text-primary">
+											<button
+												className={`text-gray-700 hover:text-primary ${
+													!isLoggedIn && 'cursor-not-allowed opacity-50'
+												}`}
+												onClick={() => {
+													if (!isLoggedIn) {
+														alert('댓글을 작성하려면 로그인이 필요합니다.');
+													}
+												}}
+											>
 												댓글 {post.comments}
 											</button>
 										</div>

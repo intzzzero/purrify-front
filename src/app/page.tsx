@@ -29,23 +29,31 @@ export default function Home() {
 							src="/images/logo.png"
 							alt="Purrify 로고"
 							width={120}
-							height={50}
+							height={30}
 							className="rounded-lg object-contain bg-white"
 						/>
 					</div>
-					<div className="flex gap-4">
+					<div className="flex items-center gap-4">
 						<Link
-							href="/auth/signin"
-							className="px-4 py-2 rounded-full bg-primary text-white hover:bg-primary/90"
+							href="/feed"
+							className="text-gray-600 hover:text-primary transition-colors"
 						>
-							{t.auth.login}
+							피드 구경하기
 						</Link>
-						<Link
-							href="/auth/signup"
-							className="px-4 py-2 rounded-full border border-primary text-primary hover:bg-primary/5"
-						>
-							{t.auth.signup}
-						</Link>
+						<div className="flex gap-4">
+							<Link
+								href="/auth/signin"
+								className="px-4 py-2 rounded-full bg-primary text-white hover:bg-primary/90"
+							>
+								{t.auth.login}
+							</Link>
+							<Link
+								href="/auth/signup"
+								className="px-4 py-2 rounded-full border border-primary text-primary hover:bg-primary/5"
+							>
+								{t.auth.signup}
+							</Link>
+						</div>
 					</div>
 				</div>
 			</nav>
