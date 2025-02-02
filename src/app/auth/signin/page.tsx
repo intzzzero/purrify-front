@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { signin } from './action';
 
 export default function SignIn() {
 	const [formData, setFormData] = useState({
@@ -9,9 +10,9 @@ export default function SignIn() {
 		password: '',
 	});
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		// 로그인 로직 구현
+		signin(formData);
 	};
 
 	return (
@@ -29,7 +30,7 @@ export default function SignIn() {
 					</Link>
 					<h2 className="mt-6 text-3xl font-bold text-gray-900">로그인</h2>
 				</div>
-				<form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+				<form className="mt-8 space-y-6" action={signin}>
 					<div className="space-y-4">
 						<div>
 							<label
@@ -40,6 +41,7 @@ export default function SignIn() {
 							</label>
 							<input
 								id="email"
+								name="email"
 								type="email"
 								required
 								className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
@@ -55,6 +57,7 @@ export default function SignIn() {
 							</label>
 							<input
 								id="password"
+								name="password"
 								type="password"
 								required
 								className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
