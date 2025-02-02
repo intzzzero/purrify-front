@@ -1,20 +1,9 @@
 'use client';
-import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { signin } from './action';
 
 export default function SignIn() {
-	const [formData, setFormData] = useState({
-		email: '',
-		password: '',
-	});
-
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		signin(formData);
-	};
-
 	return (
 		<div className="min-h-screen bg-white flex flex-col items-center justify-center px-4">
 			<div className="max-w-md w-full space-y-8">
@@ -44,7 +33,7 @@ export default function SignIn() {
 								name="email"
 								type="email"
 								required
-								className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
+								className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary text-gray-900 placeholder:text-gray-400"
 								placeholder="이메일을 입력하세요"
 							/>
 						</div>
@@ -60,7 +49,7 @@ export default function SignIn() {
 								name="password"
 								type="password"
 								required
-								className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary"
+								className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-primary focus:border-primary text-gray-900 placeholder:text-gray-400"
 								placeholder="비밀번호를 입력하세요"
 							/>
 						</div>
